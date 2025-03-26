@@ -5,8 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 import Slider from '@mui/material/Slider';
 import bgImage from './assets/bmiImage.png'
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 //function for slide bar
 const MAX = 100;
@@ -25,7 +25,13 @@ function valuetext(value) {
   return `${value} years`;
 }
 
-
+const calcWeightRange = (height) => {
+  if (!height) return;
+  const heightInMeters = height / 100;
+  const minWeight = (18.5 * heightInMeters * heightInMeters).toFixed(1)
+  const maxWeight = (24.9 * heightInMeters * heightInMeters).toFixed(1)
+  return `${minWeight} kg - ${maxWeight} kg`
+}
 
 
 
@@ -36,6 +42,9 @@ function App() {
   const [category, setCategory] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [tips, setTips] = useState("")
+  const [motivation, setMotivation] = useState("")
+  const [normalWeightRange, setNormalWeightRange] = useState("")
+
 
 
   const calculateBMI = () => {
@@ -44,23 +53,32 @@ function App() {
       const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(2);
       setBmi(bmiValue);
 
+      let categoryText = "";
+      let healthTips = "";
+      let motivationMsg = "";
+
       if (bmiValue < 18.5) {
-        setCategory("🔵 Underweight");
-        setTips("✅ Eat more calorie-dense foods like nuts & dairy.\n✅ Increase protein intake.\n✅ Strength training for muscle gain.")
-      }
-      else if (bmiValue < 24.9) {
-        setCategory("🟢 Normal weight");
-        setTips("✅ Maintain a balanced diet.\n✅ Exercise 3-5 times a week.\n✅ Stay hydrated and manage stress.")
-      }
-      else if (bmiValue < 29.9) {
-        setCategory("🟠 Overweight");
-        setTips("✅ Reduce sugary drinks & processed foods.\n✅ Increase fiber intake.\n✅ Exercise 30+ mins daily.");
-      }
-      else {
-        setCategory("🔴 Obese");
-        setTips("✅ Gradually reduce calorie intake.\n✅ Choose whole, unprocessed foods.\n✅ Consult a doctor for a personalized plan.");
+        categoryText = "🔵 Underweight";
+        healthTips = "✅ Eat more calorie-dense foods like nuts & dairy.\n✅ Increase protein intake.\n✅ Strength training for muscle gain.";
+        motivationMsg = "🌟 Your body is capable of great things! Nourish yourself well and grow stronger every day! Here are some tips for you:";
+      } else if (bmiValue < 24.9) {
+        categoryText = "🟢 Normal weight";
+        healthTips = "✅ Maintain a balanced diet.\n✅ Exercise 3-5 times a week.\n✅ Stay hydrated and manage stress.";
+        motivationMsg = "💪 Keep up the great work! Your health is your wealth, and you're doing fantastic! Here are some tips for you:";
+      } else if (bmiValue < 29.9) {
+        categoryText = "🟠 Overweight";
+        healthTips = "✅ Reduce sugary drinks & processed foods.\n✅ Increase fiber intake.\n✅ Exercise 30+ mins daily.";
+        motivationMsg = "🔥 Progress, not perfection! Small steps today lead to a healthier tomorrow! Here are some tips for you:";
+      } else {
+        categoryText = "🔴 Obese";
+        healthTips = "✅ Gradually reduce calorie intake.\n✅ Choose whole, unprocessed foods.\n✅ Consult a doctor for a personalized plan.";
+        motivationMsg = "🌈 Every journey starts with a single step! Stay strong, and take it one day at a time. Here are some tips for you:";
       }
 
+      setCategory(categoryText);
+      setTips(healthTips);
+      setMotivation(motivationMsg);
+      setNormalWeightRange(calcWeightRange(height));
       setShowModal(true);
     } else {
       alert("Please enter valid weight and height.");
@@ -136,19 +154,24 @@ function App() {
             style={{ backgroundColor: "rgba(37, 35, 35, 0.5)" }}
             className="custom-modal"
           >
-            <Modal.Header className='bg-opacity-50 shadow' closeButton>
+            <Modal.Header className='d-flex justify-content-between   p-2 p-md-3' >
               <Modal.Title style={{ color: 'black' }}>Your BMI:</Modal.Title>
+              <Button variant="outline-dark" className="" size="lg"onClick={resetForm}>
+              <FontAwesomeIcon icon={faXmark} />
+              </Button>
             </Modal.Header>
-            <Modal.Body className="text-center">
-              <h1 className="text-primary" style={{ fontSize: "100px" }}><strong>{bmi}</strong></h1>
+            <Modal.Body className="text-center mt-n1">
+              <h1 className="text-primary" style={{ fontSize: "90px" }}><strong>{bmi}</strong></h1>
               <p className="fs-5" style={{ color: 'black' }}>{category}</p>
+              <h5 className='text-success' >Your Normal Weight Range:</h5>
+              <p  style={{ color: 'black', fontSize:"" }} >{normalWeightRange}</p>
               <hr style={{ color: 'black' }} />
-              <h5 style={{ color: 'black' }}>Health Tips:</h5>
+              <p className="text-start" style={{ color: 'black' }} >{motivation}</p>
               <p className="text-start" style={{ whiteSpace: "pre-line", color: 'black' }}>
                 {tips}
               </p>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='d-none d-md-flex p-3'>
               <Button variant="primary" onClick={resetForm}>
                 Close
               </Button>
