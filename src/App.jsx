@@ -117,11 +117,11 @@ function App() {
           </div>
           <Form.Label style={{ color: 'black' }}>Weight:</Form.Label>
           <div className='mb-2' style={{ color: 'black' }}>
-            <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} className="form-control p-1 border border-light bg-white rounded" placeholder="Enter weight in kg"></input>
+            <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} className="form-control p-1 border border-light bg-white rounded" placeholder="Enter weight in kg"></input>
           </div>
           <Form.Label style={{ color: 'black' }}>Height:</Form.Label>
           <div className='mb-2'>
-            <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} className="form-control p-1 border border-light bg-white rounded" placeholder="Enter height in cm"></input>
+            <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} className="form-control p-1 border border-light bg-white rounded" placeholder="Enter height in cm"></input>
           </div>
           <div className='d-flex justify-content-center'>
             <button type="button" className='btn btn-primary mt-2 bg-primary' onClick={calculateBMI}>Calculate</button>
