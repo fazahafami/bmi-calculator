@@ -1,0 +1,71 @@
+/* *{
+    font-family: "Playfair Display", serif;
+} */
+.mt-n1 {
+    margin-top: -0.5rem !important;
+  }
+/* *{
+    background-color: ;
+} */
+/* .gradient-bg {
+    background: linear-gradient(to right, #4facfe, #8e44ad);
+    min-height: 100vh;
+    width: 100vw;
+  } */
+
+  /* #board{
+    background-color: rgb(127, 121, 129);
+  } */
+
+  /* .bg-success {
+    --bs-bg-opacity: .25;
+    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+  } */
+
+  /* #bg{
+    background: linear-gradient(to right, #a0c8ee, #c383df);
+    min-height: 100vh;
+    width: 100vw;
+    position:relative
+  } */
+
+  #main{
+    position:absolute
+  }
+  .corner-image {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 55%;
+    height: 80%;
+    opacity: 0.8;
+    object-fit: cover;
+    object-position: left;
+  }
+ 
+  .custom-modal .modal-content {
+    background-color: rgba(255, 255, 255, 0.89) !important; /* More opacity */
+    /* border-radius: 10px;
+    padding: 10px; */
+  }
+  
+  .custom-modal .modal-header, 
+  .custom-modal .modal-footer {
+    background-color: rgba(255, 255, 255, 0.79) !important;
+  }
+
+  .bmi-card {
+    max-width: 500px;
+    width: 90%; /* Makes it responsive */
+    
+  }
+
+  @media (max-width: 768px) {
+  
+    .corner-image {
+      width: 87%; 
+      height: 80%;
+      /* max-width: 80px; */
+    }
+  }
+  
