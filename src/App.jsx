@@ -156,15 +156,15 @@ function App() {
           >
             <Modal.Header className='d-flex justify-content-between   p-2 p-md-3' >
               <Modal.Title style={{ color: 'black' }}>Your BMI:</Modal.Title>
-              <Button variant="outline-dark" className="" size="lg"onClick={resetForm}>
-              <FontAwesomeIcon icon={faXmark} />
+              <Button variant="outline-primary" className="" size="lg" onClick={resetForm}>
+                <FontAwesomeIcon icon={faXmark} />
               </Button>
             </Modal.Header>
             <Modal.Body className="text-center mt-n1">
               <h1 className="text-primary" style={{ fontSize: "90px" }}><strong>{bmi}</strong></h1>
               <p className="fs-5" style={{ color: 'black' }}>{category}</p>
               <h5 className='text-success' >Your Normal Weight Range:</h5>
-              <p  style={{ color: 'black', fontSize:"" }} >{normalWeightRange}</p>
+              <p style={{ color: 'black', fontSize: "" }} >{normalWeightRange}</p>
               <hr style={{ color: 'black' }} />
               <p className="text-start" style={{ color: 'black' }} >{motivation}</p>
               <p className="text-start" style={{ whiteSpace: "pre-line", color: 'black' }}>
@@ -180,6 +180,9 @@ function App() {
 
         </div>
       </div>
+      <footer className=" text-center text-dark p-2 bg-light bg-opacity-25 shadow lg  fixed-bottom">
+        &copy; {new Date().getFullYear()} Fathima A. All Rights Reserved.
+      </footer>
     </>
   )
 }
